@@ -43,20 +43,24 @@ public class Main {
 
     private static void task4() {
         List<String> words = new ArrayList<>(List.of("tree", "winter", "ball", "winter", " juice", "tree", "song", "winter"));
+        Set<String> duplicateWords = new HashSet<>();
         int countWordsDuplicate = 1;
         for (int i = 0; i < words.size(); i++) {
             String word = words.get(i);
+            if (duplicateWords.contains(word.toLowerCase())) {
+                continue;
+            }
             for (int j = i + 1; j < words.size(); j++) {
                 if (word.equalsIgnoreCase(words.get(j))) {
                     countWordsDuplicate++;
+                    duplicateWords.add(words.get(i).toLowerCase());
                 }
             }
             if (countWordsDuplicate > 1) {
-                break;
+                System.out.println(countWordsDuplicate);
+                countWordsDuplicate = 1;
+
             }
-        }
-        if (countWordsDuplicate > 1) {
-            System.out.println(countWordsDuplicate);
         }
     }
 }
